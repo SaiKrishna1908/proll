@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Proll</title>
+    <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./resources/index/index.css" /> 
+  </head>
+
+  <body>
+    <div class="container-fluid" id="nav-container">
+      <div class="row" id="nav-row" >
+        <div class="col-sm"></div>
+        <div class="col-sm" align="center" id="nav-add-employee"><button class="btn btn-primary btn-block" type="submit">Add Employee</button></div>
+        <div class="col-sm"></div>
+      </div>
+
+      <div class="row" id="nav-row" >
+        <div class="col-sm"></div>
+        <div class="col-sm" align="center"><button class="btn btn-primary btn-block" type="submit">Employee</button></div>
+        <div class="col-sm"></div>
+      </div>
+
+      <div class="row" id="nav-row" >
+        <div class="col-sm"></div>
+        <div class="col-sm" align="center"><button class="btn btn-primary btn-block" type="submit">Payment</button></div>
+        <div class="col-sm"></div>
+      </div>
+    </div>
+
+    <script src="index_renderer.js"></script>
+    <script src="./resources/index/index.js"></script>
+    <script src="./resources/jquery.js"></script>
+    <script src="./resources/js/bootstrap.min.js"></script>
+  </body>
+</html>

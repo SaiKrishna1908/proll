@@ -1,0 +1,29 @@
+{
+  "name": "proll",
+  "version": "1.0.0",
+  "description": "Electron Application for Employee payroll system",
+  "main": "Main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaiKrishna1908/proll.git"
+  },
+  "keywords": [
+    "electron"
+  ],
+  "author": "qwerty1908",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SaiKrishna1908/proll/issues"
+  },
+  "homepage": "https://github.com/SaiKrishna1908/proll#readme",
+  "devDependencies": {
+    "electron": "^13.0.1",
+    "electron-store": "^8.0.0"
+  },
+  "dependencies": {
+    "dexie": "^3.0.3"
+  }
+}
