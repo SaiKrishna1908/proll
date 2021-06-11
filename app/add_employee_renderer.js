@@ -1,5 +1,7 @@
 const { ipcRenderer } = require('electron')
 const datastore = require('./Datastore')
+
+
 document.getElementById('addEmployee').addEventListener('submit',
 (event) => {
     event.preventDefault()

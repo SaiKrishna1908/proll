@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Proll</title>
+
+    <link rel="stylesheet" href="./resources/bootstrap.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4" id="table-content"></div>
+        <div class="col-md-4">
+          <form id="registryForm">
+            <label for='empdd'>Emp id</label>
+            <select id='empdd'>
+            </select>
+            <label for='effort'>Effort</label>
+            <input name='effort' id='effort' type="text">
+            <label for="date">Date</label>
+            <input id="date" name="date" type="date">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src="registry_renderer.js"></script>
+  </body>
+</html>

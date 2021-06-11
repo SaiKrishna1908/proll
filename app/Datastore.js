@@ -29,6 +29,10 @@ class Datastore extends Store {
         this.employees = this.employees.filter(e => e.id !== id)
         return this.saveEmployees()
     }
+
+    getNameById(id) {
+        return this.employees.filter(i => i.id == id)[0].name
+    }
     
 }
 

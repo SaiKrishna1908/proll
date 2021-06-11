@@ -10,6 +10,7 @@ const defaultProps = {
         contextIsolation: false,
         nodeIntegration: true
     }
+    
 }
 
 class Window extends BrowserWindow{
