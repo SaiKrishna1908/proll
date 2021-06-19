@@ -5,9 +5,9 @@ const datastore = require('./Datastore')
 document.getElementById('addEmployee').addEventListener('submit',
 (event) => {
     event.preventDefault()
-
-    const input = event.target[0]
-    ipcRenderer.send('add-employee', input.value)
+    console.log(event.target)
+    const input = [event.target[0].value, event.target[1].value];
+    ipcRenderer.send('add-employee', input)
     input.value=''
 }
 )

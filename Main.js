@@ -14,7 +14,10 @@ function main() {
     let mainWindow = new Window({
         file: path.join('app', 'index.html')
     })
-    mainWindow.removeMenu();
+
+  
+
+    //mainWindow.removeMenu();
     let  addEmployee
     let  registryWindow
     ipcMain.on('add-employee-window', () => {
@@ -37,9 +40,9 @@ function main() {
     }
     })
 
-    ipcMain.on('add-employee', (event, name) => {
+    ipcMain.on('add-employee', (event, input) => {
         console.log('event triggered add-employee')
-        employeedb.addEmployee(name);
+        employeedb.addEmployee(input[0], input[1]);
         
     })
 

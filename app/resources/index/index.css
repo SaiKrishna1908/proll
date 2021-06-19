@@ -5,3 +5,25 @@
 #nav-row {
     margin: 50px;
 }
+
+body {
+    background-color:  #fdfefe ;
+    
+}
+
+.home {
+    background-image: url('../calc3.png');
+    background-repeat: no-repeat;
+    background-position:  bottom right;
+    background-size: contain;
+}
+
+button {
+    background-color: #0a2540;
+    color: white;
+    width: 100%;
+}
+
+.form-container{
+    border: 5px black;
+}

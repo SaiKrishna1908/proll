@@ -19,22 +19,35 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-          <form id="addEmployee">
-            <div class="form-group">
-              <label for="exampleInputEmail1">Name</label>
+        <div class="col-sm-4  form-container">
+          <form id="addEmployee" class="form-group">
+            <div class="mb-4">
+              <label for="name" class="form-label"></label>
               <input
                 type="text"
                 class="form-control"
-                placeholder="Enter Employee Name"
+                placeholder="Employee Name"
+                id="name"
+                name="name"
               />
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="mb-4">
+              <label for="salary"></label>
+              <input
+                type="number"
+                class="form-control"
+                placeholder="Salary"
+                id="salary"
+                name="salary"
+              />
+            </div>
+            <button type="submit" class="btn">Submit</button>
           </form>
         </div>
         <div class="col-sm-4"></div>
       </div>
     </div>
+
     <script src="add_employee_renderer.js"></script>
   </body>
 </html>
