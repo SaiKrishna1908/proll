@@ -3,28 +3,21 @@
 const { ipcRenderer } = require('electron')
 
 
-document.getElementById('date').addEventListener('input', (event) => {
-    console.log('hello world')
-})
-
-
 document.getElementById("registryForm").addEventListener('submit', (event) => {
     event.preventDefault()
-    const empid = event.target[0].value
-    const efforts = event.target[1].value
-    const date = event.target[2].value
 
-    console.log(empid)
-    console.log(efforts)
-    console.log(date)
+    const date = event.target[0].value  
+    const empid = event.target[1].value
+    const entrytime = event.target[2].value
+    const endtime = event.target[3].value
     
-    
-    ipcRenderer.send('add-employee-efforts', [empid,efforts,date])
+    ipcRenderer.send('add-employee-efforts', [empid,entrytime,endtime,date])
 })
 
 ipcRenderer.on('event-employees', (event, employees) => {
     let select = document.getElementById('empdd');
-
+    
+    console.log(employees);
 
     const items = employees.reduce((html, elem) => {
         html+= `<option>${(elem.name)}</option>`

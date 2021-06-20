@@ -27,12 +27,12 @@ function main() {
         console.log('event trigged add-employee-window')
         addEmployee = new Window({
             file: path.join('app', 'add_employee.html'),
-            width: 400,
-            height: 400,
+            width: 500,
+            height: 500,
             parent: mainWindow
             
         })
-        addEmployee.removeMenu()
+        // addEmployee.removeMenu()
 
         addEmployee.on('closed', () => {
             addEmployee = null;
@@ -41,9 +41,9 @@ function main() {
     })
 
     ipcMain.on('add-employee', (event, input) => {
-        console.log('event triggered add-employee')
-        employeedb.addEmployee(input[0], input[1]);
-        
+        console.log(input)
+        employeedb.addEmployee(input[0], input[1], input[2]);
+        addEmployee.send('employee-added');
     })
 
     ipcMain.on('show-registry-window', () => {
@@ -69,8 +69,9 @@ function main() {
     })
 
     ipcMain.on('add-employee-efforts', (event, input) => {
-        console.log('Called add-employee-efforts');
-        registrydb.addEmployeeEfforts(input[2], {"empid":input[0], "efforts":input[1]});
+        console.log(input);
+        registrydb.addEmployeeEfforts(input[3], {"empid":input[0],"starttime":input[1],
+        "endtime": input[2]});
     })
 
 }

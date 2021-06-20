@@ -18,10 +18,10 @@ class Datastore extends Store {
         return this.employees;
     }
 
-    addEmployee(name, salary) {
-        console.log('employee added',name)
+    addEmployee(name, salary, doj) {
         let employee = new Employee(name, this.employees.length+1);
         employee.setSalary(salary);
+        employee.setDoj(doj);
         this.employees = [...this.employees,employee];
         return this.saveEmployees();
     }

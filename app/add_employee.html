@@ -19,7 +19,7 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-4"></div>
-        <div class="col-sm-4  form-container">
+        <div class="col-sm-4 form-container">
           <form id="addEmployee" class="form-group">
             <div class="mb-4">
               <label for="name" class="form-label"></label>
@@ -29,8 +29,10 @@
                 placeholder="Employee Name"
                 id="name"
                 name="name"
+                required
               />
             </div>
+            
             <div class="mb-4">
               <label for="salary"></label>
               <input
@@ -39,12 +41,26 @@
                 placeholder="Salary"
                 id="salary"
                 name="salary"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="doj"></label>
+              <input
+                type="date"
+                class="form-control"
+                placeholder="Date of joining"
+                id="doj"
+                name="doj"
+                required
               />
             </div>
             <button type="submit" class="btn">Submit</button>
           </form>
         </div>
-        <div class="col-sm-4"></div>
+        <hr>
+        <div class="col-sm-4" id="add-employee-status">
+        </div>
       </div>
     </div>
 

@@ -11,28 +11,29 @@
       content="default-src 'self'; script-src 'self'"
     />
     <title>Proll</title>
-
-    <link rel="stylesheet" href="./resources/bootstrap.css" />
+    <link rel="stylesheet" href="./resources/index/index.css" />
+    <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
   </head>
 
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-md-4">
-        </div>
-        <div class="col-md-4" id="table-content"></div>
-        <div class="col-md-4">
-          <form id="registryForm">
-            <label for='empdd'>Emp id</label>
-            <select id='empdd'>
-            </select>
-            <label for='effort'>Effort</label>
-            <input name='effort' id='effort' type="text">
-            <label for="date">Date</label>
-            <input id="date" name="date" type="date">
-            <button type="submit" class="btn btn-primary">Submit</button>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4" id="table-content">
+          <form id="registryForm" class="form-group">
+            <label for="date" class="form-label">Date</label>
+            <input name="date" id="effort" type="date" class="form-control" />
+            <label for="empdd" class="form-label">Employee Name</label>
+            <select id="empdd" class="form-control"></select>
+            <label for="entrytime" class="form-label">Entry Time</label>
+            <input name="entrytime" id="effort" type="time" class="form-control" />
+            <label for="endtime" class="form-label">Date</label>
+            <input id="endtime" name="endtime" type="time" class="form-control" />
+            <hr>
+            <button type="submit" class="btn">Submit</button>
           </form>
         </div>
+        <div class="col-sm-4"></div>
       </div>
     </div>
     <script src="registry_renderer.js"></script>

@@ -25,5 +25,7 @@ button {
 }
 
 .form-container{
-    border: 5px black;
+    background-image: url('../background.jpg');
+    border: 10px solid #9fb4d6;
+    height: 100%;
 }
