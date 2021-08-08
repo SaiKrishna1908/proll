@@ -16,14 +16,74 @@
   </head>
   <body>
     <div class="card">
-      <div class="card-header">Featured</div>
+      <div class="card-header">Payments</div>
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">
-          With supporting text below as a natural lead-in to additional content.
-        </p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <form id="paymentForm" class="w-50 form-group">
+          <label for="empdd" class="form-label">Employee Name</label>
+          <select id="empdd" class="form-control"></select>
+          <label for="workinghours" class="form-label"
+            >Worker's basic work hours</label
+          >
+          <input
+            type="number"
+            id="workinghours"
+            class="form-control"
+            placeholder="Digits Only"
+          />
+          <label for="overtime" class="form-label"
+            >Overtime Price per hour</label
+          >
+          <input
+            type="number"
+            id="overtime"
+            class="form-control"
+            placeholder="Digits Only"
+          />
+
+          <label for="month" class="form-label">Month</label>
+          <select id="month" class="form-control">
+            <option>01</option>
+            <option>02</option>
+            <option>03</option>
+            <option>04</option>
+            <option>05</option>
+            <option>06</option>
+            <option>07</option>
+            <option>08</option>
+            <option>09</option>
+            <option>10</option>
+            <option>11</option>
+            <option>12</option>
+          </select>
+
+          <br />
+          <button type="submit" class="btn">Calculate</button>
+        </form>
       </div>
     </div>
+    <div class="card">
+      <div class="card-body">
+        <p id="workinghoursph"></p>
+        <p id="overtimeph"></p>
+        <p id="paymentph"></p>
+      </div>
+    </div>
+
+    <script type="text/javascript" src="payment_renderer.js"></script>
+    <script type="text/javascript" src="./resources/index/index.js"></script>
+    <script
+      type="text/javascript"
+      src="./resources/js/bootstrap.min.js"
+    ></script>
+    <script type="text/javascript" src="./resources/jquery.js"></script>
+    <script>
+      (function ($) {
+        $(function () {
+          $(".update").live("change", function () {
+            formObject.run($(this));
+          });
+        });
+      })(jQuery);
+    </script>
   </body>
 </html>

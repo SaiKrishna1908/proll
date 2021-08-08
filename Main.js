@@ -1,7 +1,13 @@
 "use strict";
 
 const path = require("path");
-const { app, ipcMain, BrowserWindow } = require("electron");
+const {
+  app,
+  ipcMain,
+  BrowserWindow,
+  webContents,
+  ipcRenderer,
+} = require("electron");
 
 const Window = require("./app/Window");
 const Datastore = require("./app/Datastore");
@@ -75,7 +81,13 @@ function main() {
       });
 
       paymentWindow.once("show", () => {
-        paymentWindow.webContents.send("event-payment");
+        paymentWindow.webContents.send(
+          "event-payment",
+          employeedb.getEmployees()
+        );
+      });
+      paymentWindow.on("closed", () => {
+        paymentWindow = null;
       });
     }
   });
@@ -91,16 +103,19 @@ function main() {
 
     if (
       name.length > 0 &&
-      input[1] != null &&
-      input[2] != null &&
-      input[3] != null
-    )
+      input[1].length > 0 &&
+      input[2].length > 0 &&
+      input[3].length > 0
+    ) {
       registrydb.addEmployeeEfforts(input[3], {
         empname: name,
         starttime: input[1],
         endtime: input[2],
         empid: input[4],
       });
+    }
+
+    registryWindow.webContents.send("refresh");
   });
 }
 
