@@ -16,26 +16,63 @@
   </head>
 
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4" id="table-content">
-          <form id="registryForm" class="form-group">
-            <label for="date" class="form-label">Date</label>
-            <input name="date" id="effort" type="date" class="form-control" />
-            <label for="empdd" class="form-label">Employee Name</label>
-            <select id="empdd" class="form-control"></select>
-            <label for="entrytime" class="form-label">Entry Time</label>
-            <input name="entrytime" id="effort" type="time" class="form-control" />
-            <label for="endtime" class="form-label">Date</label>
-            <input id="endtime" name="endtime" type="time" class="form-control" />
-            <hr>
-            <button type="submit" class="btn">Submit</button>
-          </form>
+    <div class="container-fluid">
+      <div
+        class="
+          row
+          d-flex
+          flex-column
+          justify-content-center
+          align-content-center
+        "
+      >
+        <form id="registryForm" class="w-50 form-group">
+          <label for="date" class="form-label">Date</label>
+          <input name="date" id="effort" type="date" class="form-control" />
+          <label for="empdd" class="form-label">Employee Name</label>
+          <select id="empdd" class="form-control"></select>
+          <label for="entrytime" class="form-label">Entry Time</label>
+          <input
+            name="entrytime"
+            id="effort"
+            type="time"
+            class="form-control"
+          />
+          <label for="endtime" class="form-label">Date</label>
+          <input id="endtime" name="endtime" type="time" class="form-control" />
+          <hr />
+          <button type="submit" class="btn">Submit</button>
+        </form>
+        <div>
+          <table class="table" id="dtBaseTable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Date</th>
+                <th scope="col">Efforts</th>
+              </tr>
+            </thead>
+            <tbody id="emp-register"></tbody>
+          </table>
         </div>
-        <div class="col-sm-4"></div>
       </div>
     </div>
-    <script src="registry_renderer.js"></script>
+    <script type="text/javascript" src="registry_renderer.js"></script>
+    <script type="text/javascript" src="./resources/index/index.js"></script>
+    <script
+      type="text/javascript"
+      src="./resources/js/bootstrap.min.js"
+    ></script>
+    <script type="text/javascript" src="./resources/jquery.js"></script>
+    <script>
+      (function ($) {
+        $(function () {
+          $(".update").live("change", function () {
+            formObject.run($(this));
+          });
+        });
+      })(jQuery);
+    </script>
   </body>
 </html>

@@ -1,82 +1,110 @@
-'use strict'
+"use strict";
 
-const path = require('path')
-const { app, ipcMain } = require('electron')
+const path = require("path");
+const { app, ipcMain, BrowserWindow } = require("electron");
 
-const Window = require('./app/Window')
-const Datastore = require('./app/Datastore')
-const RegistryDataStore = require('./app/RegistryDataStore')
+const Window = require("./app/Window");
+const Datastore = require("./app/Datastore");
+const RegistryDataStore = require("./app/RegistryDataStore");
 
-const employeedb = new Datastore({name:'employees'})
-const registrydb = new RegistryDataStore({name: 'registry'})
+const employeedb = new Datastore({ name: "employees" });
+const registrydb = new RegistryDataStore({ name: "registry" });
 function main() {
+  let mainWindow = new Window({
+    file: path.join("app", "index.html"),
+  });
 
-    let mainWindow = new Window({
-        file: path.join('app', 'index.html')
-    })
+  //mainWindow.removeMenu();
+  let addEmployee;
+  let registryWindow;
+  let paymentWindow;
+  ipcMain.on("add-employee-window", () => {
+    if (!addEmployee) {
+      console.log("event trigged add-employee-window");
+      addEmployee = new Window({
+        file: path.join("app", "add_employee.html"),
+        width: 500,
+        height: 500,
+        parent: mainWindow,
+      });
+      // addEmployee.removeMenu()
 
-  
-
-    //mainWindow.removeMenu();
-    let  addEmployee
-    let  registryWindow
-    ipcMain.on('add-employee-window', () => {
-
-        if(!addEmployee){
-
-        console.log('event trigged add-employee-window')
-        addEmployee = new Window({
-            file: path.join('app', 'add_employee.html'),
-            width: 500,
-            height: 500,
-            parent: mainWindow
-            
-        })
-        // addEmployee.removeMenu()
-
-        addEmployee.on('closed', () => {
-            addEmployee = null;
-        })
+      addEmployee.on("closed", () => {
+        addEmployee = null;
+      });
     }
-    })
+  });
 
-    ipcMain.on('add-employee', (event, input) => {
-        console.log(input)
-        employeedb.addEmployee(input[0], input[1], input[2]);
-        addEmployee.send('employee-added');
-    })
+  ipcMain.on("add-employee", (event, input) => {
+    console.log(input);
+    employeedb.addEmployee(input[0], input[1], input[2]);
+    addEmployee.send("employee-added");
+  });
 
-    ipcMain.on('show-registry-window', () => {
+  ipcMain.on("show-registry-window", () => {
+    if (!registryWindow) {
+      console.log("event triggered show-regristry-window");
+      registryWindow = new Window({
+        file: path.join("app", "registry.html"),
+        width: 1000,
+        height: 1000,
+        parent: mainWindow,
+      });
 
-        
-        if(!registryWindow) {
-            console.log('event triggered show-regristry-window')
-            registryWindow = new Window({
-                file: path.join('app','registry.html'),
-                width: 800,
-                height: 800,
-                parent: mainWindow
-                
-            })
+      registryWindow.once("show", () => {
+        registryWindow.webContents.send(
+          "event-employees",
+          employeedb.getEmployees()
+        );
+      });
+      registryWindow.on("closed", () => {
+        registryWindow = null;
+      });
+    }
+  });
 
-            registryWindow.once('show', () => {
-            registryWindow.webContents.send('event-employees', employeedb.getEmployees()) 
-            })
-            registryWindow.on('closed', ()=> {
-                registryWindow = null;
-            })
-        }
-    })
+  ipcMain.on("show-payment-window", () => {
+    if (!paymentWindow) {
+      console.log("event triggered payment page");
 
-    ipcMain.on('add-employee-efforts', (event, input) => {
-        console.log(input);
-        registrydb.addEmployeeEfforts(input[3], {"empid":input[0],"starttime":input[1],
-        "endtime": input[2]});
-    })
+      paymentWindow = new Window({
+        file: path.join("app", "payment.html"),
+        width: 1000,
+        height: 1000,
+        parent: mainWindow,
+      });
 
+      paymentWindow.once("show", () => {
+        paymentWindow.webContents.send("event-payment");
+      });
+    }
+  });
+
+  ipcMain.on("add-employee-efforts", (event, input) => {
+    console.log(input);
+
+    let name = "";
+
+    input[0].forEach((item) => {
+      name += item;
+    });
+
+    if (
+      name.length > 0 &&
+      input[1] != null &&
+      input[2] != null &&
+      input[3] != null
+    )
+      registrydb.addEmployeeEfforts(input[3], {
+        empname: name,
+        starttime: input[1],
+        endtime: input[2],
+        empid: input[4],
+      });
+  });
 }
 
-app.on('ready', main)
-app.on('window-all-closed', function() {
-    app.quit()
-})
+app.on("ready", main);
+app.on("window-all-closed", function () {
+  app.quit();
+});
